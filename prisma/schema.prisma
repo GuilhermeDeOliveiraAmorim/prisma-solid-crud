@@ -19,3 +19,13 @@ model User {
 
     @@map("users")
 }
+
+model Address {
+    id       String @id @default(uuid())
+    street   String
+    city     String
+    state    String
+    zip_code Int
+
+    @@map("address")
+}
