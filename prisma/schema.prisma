@@ -11,21 +11,33 @@ datasource db {
 }
 
 model User {
-    id         String   @id @default(uuid())
-    email      String   @unique
-    name       String?
-    password   String?
-    created_at DateTime @default(now())
+    id          String        @id @default(uuid())
+    email       String        @unique
+    name        String?
+    password    String?
+    created_at  DateTime      @default(now())
+    UserAddress UserAddress[]
 
     @@map("users")
 }
 
 model Address {
-    id       String @id @default(uuid())
-    street   String
-    city     String
-    state    String
-    zip_code Int
+    id          String        @id @default(uuid())
+    street      String
+    city        String
+    state       String
+    zip_code    Int
+    UserAddress UserAddress[]
 
-    @@map("address")
+    @@map("adresses")
+}
+
+model UserAddress {
+    id         String  @id @default(uuid())
+    id_user    String
+    user       User    @relation(fields: [id_user], references: [id])
+    id_address String
+    address    Address @relation(fields: [id_address], references: [id])
+
+    @@map("users_adresses")
 }
