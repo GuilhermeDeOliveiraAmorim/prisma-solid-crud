@@ -5,6 +5,8 @@ import { CreateCountryController } from "./controllers/CreateCountryController";
 import { CreateStateController } from "./controllers/CreateStateController";
 import { CreateUserAddressController } from "./controllers/CreateUserAddressController";
 import { CreateUserController } from "./controllers/CreateUserController";
+import { FindAllUsersController } from "./controllers/FindAllUsersController";
+import { FindUserController } from "./controllers/FindUserController";
 
 const router = Router();
 
@@ -14,6 +16,8 @@ const createUserAddress = new CreateUserAddressController();
 const createCity = new CreateCityController();
 const createState = new CreateStateController();
 const createCountry = new CreateCountryController();
+const findUser = new FindUserController();
+const findAllUsers = new FindAllUsersController();
 
 router.post("/user", createUser.handle);
 router.post("/address", createAddress.handle);
@@ -21,5 +25,7 @@ router.post("/user-address", createUserAddress.handle);
 router.post("/city", createCity.handle);
 router.post("/state", createState.handle);
 router.post("/country", createCountry.handle);
+router.get("/user/:id", findUser.handle);
+router.get("/users", findAllUsers.handle);
 
 export { router };
