@@ -22,16 +22,17 @@ model User {
 }
 
 model Address {
-    id          String        @id @default(uuid())
-    street      String
-    id_city     String
-    city        City          @relation(fields: [id_city], references: [id])
-    id_state    String
-    state       State         @relation(fields: [id_state], references: [id])
-    id_country  String
-    country     Country       @relation(fields: [id_country], references: [id])
-    zip_code    Int
-    UserAddress UserAddress[]
+    id            String        @id @default(uuid())
+    street        String
+    street_number Int
+    id_city       String
+    city          City          @relation(fields: [id_city], references: [id])
+    id_state      String
+    state         State         @relation(fields: [id_state], references: [id])
+    id_country    String
+    country       Country       @relation(fields: [id_country], references: [id])
+    zip_code      Int
+    UserAddress   UserAddress[]
 
     @@map("adresses")
 }

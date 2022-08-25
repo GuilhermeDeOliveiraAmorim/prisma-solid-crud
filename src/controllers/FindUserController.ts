@@ -9,8 +9,27 @@ export class FindUserController {
             where: {
                 id,
             },
-            include: {
-                UserAddress: true,
+            select: {
+                id: true,
+                name: true,
+                email: true,
+                created_at: true,
+                password: true,
+                UserAddress: {
+                    select: {
+                        address: {
+                            select: {
+                                id: true,
+                                street: true,
+                                street_number: true,
+                                zip_code: true,
+                                city: true,
+                                state: true,
+                                country: true,
+                            },
+                        },
+                    },
+                },
             },
         });
 
