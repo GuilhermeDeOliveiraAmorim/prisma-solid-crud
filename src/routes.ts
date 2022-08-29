@@ -1,4 +1,4 @@
-import { Router } from "express";
+import { request, response, Router } from "express";
 import { CreateAddressController } from "./controllers/CreateAddressController";
 import { CreateCityController } from "./controllers/CreateCityController copy";
 import { CreateCountryController } from "./controllers/CreateCountryController";
@@ -10,6 +10,7 @@ import { FindCitiesController } from "./controllers/FindCitiesController";
 import { FindCityController } from "./controllers/FindCityController";
 import { FindUserAddressController } from "./controllers/FindUserAddressController";
 import { FindUserController } from "./controllers/FindUserController";
+import { createUserController } from "./useCases/user/CreateUser";
 
 const router = Router();
 
@@ -36,5 +37,9 @@ router.get("/users", findAllUsers.handle);
 router.get("/get-user-address/:id", findUserAddress.handle);
 router.get("/cities", findCities.handle);
 router.get("/city/:search", findCity.handle);
+
+router.post("/users", (request, response) => {
+    return createUserController.handle(request, response);
+});
 
 export { router };
